@@ -1,0 +1,23 @@
+root@example.com:~# kubectl get all -n ingress-nginx
+NAME                                            READY   STATUS    RESTARTS   AGE
+pod/ingress-nginx-controller-6fdcbdb4f7-4jv6f   1/1     Running   0          13d
+pod/ingress-nginx-controller-6fdcbdb4f7-8tc47   1/1     Running   0          13d
+
+NAME                                         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
+service/ingress-nginx-controller             NodePort    10.43.238.0    <none>        80:30080/TCP,443:30443/TCP   13d
+service/ingress-nginx-controller-admission   ClusterIP   10.43.196.41   <none>        443/TCP                      13d
+
+NAME                                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/ingress-nginx-controller   2/2     2            2           13d
+
+NAME                                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/ingress-nginx-controller-6fdcbdb4f7   2         2         2       13d
+
+NAME                                                           REFERENCE                             TARGETS                        MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/ingress-nginx-controller   Deployment/ingress-nginx-controller   memory: 57%/80%, cpu: 5%/80%   1         3         2          13d
+root@cld76:~# 
+root@cld76:~# 
+root@cld76:~# kubectl get ing -n backend
+NAME         CLASS            HOSTS               ADDRESS       PORTS   AGE
+vm-ingress   nginx-external   web.cld76.ucg.ltd   10.43.238.0   80      13d
+root@example.com:~# 
